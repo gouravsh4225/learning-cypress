@@ -39,4 +39,14 @@ describe("Tasks Management Page", () => {
     cy.get(".task h2").contains("New Test Task");
     cy.get(".task p").contains("Some Description");
   });
+
+  it("should validate user input", () => {
+    cy.visit("http://localhost:5173");
+    cy.get("button").contains("Add Task").click();
+    cy.get(".modal button").contains("Add Task").click();
+    cy.get(".modal .error-message").should("exist");
+    cy.get(".modal .error-message").contains(
+      "Please provide values for task title, summary and category!"
+    );
+  });
 });
