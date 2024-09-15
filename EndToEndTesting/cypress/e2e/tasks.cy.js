@@ -12,16 +12,31 @@ describe("Tasks Management Page", () => {
     cy.visit("http://localhost:5173");
     cy.get("button").contains("Add Task").click();
   });
-  it("should close the modal on click Cancel Button", () => {
-    cy.visit("http://localhost:5173");
-    cy.get("button").contains("Add Task").click();
-    cy.get("button").contains("Cancel").click();
-  });
   it("should close the modal on click backdrop", () => {
     cy.visit("http://localhost:5173");
     cy.get("button").contains("Add Task").click();
     console.info("Add console");
     cy.get(".backdrop").click({ force: true });
+    cy.get(".backdrop").should("not.exist");
+    cy.get(".model").should("not.exist");
     // cy.get("button").contains("Cancel").click();
+  });
+  it("should close the modal on click Cancel Button", () => {
+    cy.visit("http://localhost:5173");
+    cy.get("button").contains("Add Task").click();
+    cy.get("button").contains("Cancel").click();
+    cy.get(".backdrop").should("not.exist");
+    cy.get(".model").should("not.exist");
+  });
+
+  it("should create new task", () => {
+    cy.visit("http://localhost:5173");
+    cy.get("button").contains("Add Task").click();
+    cy.get("#title").type("New Test Task");
+    cy.get("#summary").type("Some Description");
+    cy.get(".modal button").contains("Add Task").click();
+    cy.get(".task").should("have.length", 1);
+    cy.get(".task h2").contains("New Test Task");
+    cy.get(".task p").contains("Some Description");
   });
 });
