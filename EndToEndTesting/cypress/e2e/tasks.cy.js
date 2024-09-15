@@ -20,6 +20,7 @@ describe("Tasks Management Page", () => {
   it("should close the modal on click backdrop", () => {
     cy.visit("http://localhost:5173");
     cy.get("button").contains("Add Task").click();
+    console.info("hegy");
     cy.get(".backdrop").click({ force: true });
     // cy.get("button").contains("Cancel").click();
   });
