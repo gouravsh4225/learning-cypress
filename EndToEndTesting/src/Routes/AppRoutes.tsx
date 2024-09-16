@@ -24,7 +24,14 @@ export const AppRoutes = () => {
           </PageLayout>
         }
       />
-      <Route path="/task" element={<TaskPage />} />
+      <Route
+        path="/task"
+        element={
+          <PageLayout>
+            <TaskPage />
+          </PageLayout>
+        }
+      />
     </Routes>
   );
 };

@@ -4,7 +4,7 @@ import classes from "../../styles/PageLayout.module.css";
 
 const PageLayout = (props) => {
   return (
-    <div className="classes">
+    <div className={classes.center}>
       <Header />
       {props.children}
     </div>
