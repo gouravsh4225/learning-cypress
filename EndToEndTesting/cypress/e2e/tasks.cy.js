@@ -49,4 +49,19 @@ describe("Tasks Management Page", () => {
       "Please provide values for task title, summary and category!"
     );
   });
+  it("should filters the tasks", () => {
+    cy.visit("http://localhost:5173");
+    cy.get("button").contains("Add Task").click();
+    cy.get("#title").type("New Test Task");
+    cy.get("#summary").type("Some Description");
+    cy.get("#category").select("urgent");
+    cy.get(".modal button").contains("Add Task").click();
+    cy.get(".task").should("have.length", 1);
+    cy.get("#filter").select("moderate");
+    cy.get(".task").should("have.length", 0);
+    cy.get("#filter").select("urgent");
+    cy.get(".task").should("have.length", 1);
+    cy.get("#filter").select("all");
+    cy.get(".task").should("have.length", 1);
+  });
 });
