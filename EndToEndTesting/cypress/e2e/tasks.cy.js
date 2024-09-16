@@ -49,6 +49,7 @@ describe("Tasks Management Page", () => {
       "Please provide values for task title, summary and category!"
     );
   });
+
   it("should filters the tasks", () => {
     cy.visit("http://localhost:5173");
     cy.get("button").contains("Add Task").click();
