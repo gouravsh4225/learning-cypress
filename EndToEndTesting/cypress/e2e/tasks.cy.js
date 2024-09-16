@@ -64,4 +64,25 @@ describe("Tasks Management Page", () => {
     cy.get("#filter").select("all");
     cy.get(".task").should("have.length", 1);
   });
+
+  it("should add multiple tasks", () => {
+    cy.visit("http://localhost:5173");
+    cy.get("button").contains("Add Task").click();
+    cy.get("#title").type("Test Task 1");
+    cy.get("#summary").type("Some Description 1");
+    cy.get("#category").select("urgent");
+    cy.get(".modal button").contains("Add Task").click();
+    cy.get(".task").should("have.length", 1);
+    /** 2nd task  */
+    cy.get("button").contains("Add Task").click();
+    cy.get("#title").type("Test Task 2");
+    cy.get("#summary").type("Some Description 2");
+    cy.get("#category").select("moderate");
+    cy.get(".modal button").contains("Add Task").click();
+    cy.get(".task").should("have.length", 2);
+
+    /** checking the order of list */
+    cy.get(".task").eq(0).contains("Test Task 1"); // alternate first()
+    cy.get(".task").eq(1).contains("Test Task 2"); // alternate last()
+  });
 });
