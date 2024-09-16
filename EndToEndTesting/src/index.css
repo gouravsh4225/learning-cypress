@@ -39,19 +39,24 @@
 html {
   /* background-color: var(--color-gray-900); */
   height: 100%;
-  background: linear-gradient(
-    160deg,
-    #241b33, 
-    #281b42
-  );
+  /* background: linear-gradient(160deg, #241b33, #281b42); */
   color: var(--color-gray-100);
+
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  /* color: var(--color-gray-100); */
+  background-color: var(--color-gray-1000);
 }
 
 body {
   margin: 0;
 }
 
-main {
+.task-container {
   max-width: 40rem;
   margin: 2rem auto;
   padding: 3rem;
